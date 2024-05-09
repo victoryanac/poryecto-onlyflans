@@ -19,6 +19,12 @@ from django.urls import path
 from web.views import index
 from web.views import welcome 
 from web.views import about
+from web.views import contact_view
+from web.views import contact_view_exito
+from django.urls import include, path # se importa include y path de django.urls
+from web.views import flan_detail
+from web import views 
+
 
 
 urlpatterns = [
@@ -26,4 +32,13 @@ urlpatterns = [
     path('', index, name='index'),
     path('about/', about, name='about'),
     path('welcome/', welcome , name='welcome'),
+    path('contacto_existoso/', contact_view_exito, name='contact_view_exito'),
+    path('contact_form/', contact_view, name='contact_form'),
+    path('accounts/', include('django.contrib.auth.urls')), # se incluyen las urls de autenticacion de django
+    path('flan/<int:flan_id>/', flan_detail, name='flan_detail'),
+    
+    path('add_to_favorites/<int:flan_id>/', views.add_to_favorites, name='add_to_favorites'),
+    path('remove_from_favorites/<int:flan_id>/', views.remove_from_favorites, name='remove_from_favorites'),
+    path('favorites/', views.favorites, name='favorites'),
+
 ]

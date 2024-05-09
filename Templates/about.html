@@ -1,7 +1,89 @@
 {% extends 'includes/base.html' %}
 
 {% block 'contect' %} 
-    <div>
-        Bienvenido al about  
+<style>
+    @import url(//fonts.googleapis.com/css?family=Montserrat:300,500,600,700,800);
+.static-slider1 {
+  font-family: "Montserrat", sans-serif;
+	color: #8d97ad;
+  font-weight: 300;
+}
+
+.static-slider1 h1, .static-slider1 h2, .static-slider1 h3, .static-slider1 h4, .static-slider1 h5, .static-slider1 h6 {
+color: #3e4555;
+}
+
+.static-slider1 .title{
+		font-weight: 700;
+    line-height: 56px;
+		font-size: 36px;
+}
+
+.static-slider1 .title span{
+		border-bottom: 3px solid #2cdd9b;
+}
+
+@media (max-width:767px) {
+	.static-slider1 .title{
+			font-weight: 700;
+			line-height: 36px;
+			font-size: 24px;
+	}
+}
+
+.static-slider1 .btn-success-gradiant {
+    background: #777DD1;
+    background: -webkit-linear-gradient(legacy-direction(to right), #777DD1 0%, #1dc8cc 100%);
+    background: -webkit-gradient(linear, left top, right top, from(#777DD1), to(#1dc8cc));
+    background: -webkit-linear-gradient(left, #777DD1 0%, #1dc8cc 100%);
+    background: -o-linear-gradient(left, #777DD1 0%, #1dc8cc 100%);
+    background: linear-gradient(to right, #777DD1 0%, #1dc8cc 100%);
+}
+
+.static-slider1 .btn-success-gradiant:hover {
+    background: #1dc8cc;
+    background: -webkit-linear-gradient(legacy-direction(to right), #1dc8cc 0%, #777DD1 100%);
+    background: -webkit-gradient(linear, left top, right top, from(#1dc8cc), to(#777DD1));
+    background: -webkit-linear-gradient(left, #1dc8cc 0%, #777DD1 100%);
+    background: -o-linear-gradient(left, #1dc8cc 0%, #777DD1 100%);
+    background: linear-gradient(to right, #1dc8cc 0%, #777DD1 100%);    
+}
+
+.static-slider1 .btn-md {
+    padding: 15px 45px;
+    font-size: 16px;
+}
+
+.static-slider1 .text-success-gradiant {
+		background: #2cdd9b;
+    background: -webkit-linear-gradient(legacy-direction(to right), #2cdd9b 0%, #1dc8cc 100%);
+    background: -webkit-gradient(linear, left top, right top, from(#2cdd9b), to(#1dc8cc));
+    background: -webkit-linear-gradient(left, #2cdd9b 0%, #1dc8cc 100%);
+    background: -o-linear-gradient(left, #2cdd9b 0%, #1dc8cc 100%);
+    background: linear-gradient(to right, #2cdd9b 0%, #1dc8cc 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+}
+</style>    
+
+<div>
+        <div class="static-slider1 py-4">
+            <div class="container">
+                <!-- Row  --> 
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-md-7 align-self-center">
+                        <h1 class="title">Somos una empresa <br>de flanes <span class="text-success-gradiant typewrite" data-period="2000" data-type='[ "Photoshop", "HTML", "CSS3", "Angular CLI" ]'></span></h1>
+                        <a class="btn btn-success-gradiant btn-md btn-arrow mt-3 text-white border-0" href=""><span>Contactanos</span></a>
+                    </div>
+                    <!-- Column -->
+                    <div class="col-md-5 mt-4">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2761/2761008.png" alt="wrapkit" class="img-fluid"/>
+                    </div>
+                </div>
+            </div>
+        </div>       
     </div>
 {% endblock 'contect' %}

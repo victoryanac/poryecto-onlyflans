@@ -1,8 +1,221 @@
-
 {% extends 'includes/base.html' %}
 
-{% block 'contect' %} 
-    <div>
-        Bienvenido al index  
+{% block 'contect' %}
+
+<style>
+    /* CSS */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'roboto', sans-serif;
+        background-color: #F2F2F2;
+    }
+
+    h1 {
+        text-align: center;
+        color: #333333;
+    }
+
+    .cardcontainer {
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+        background-color: white;
+        margin-left: auto;
+        margin-right: auto;
+        transition: 0.3s;
+    }
+
+    .cardcontainer:hover {
+        box-shadow: 0 0 45px gray;
+    }
+
+    .photo {
+        height: 300px;
+        width: 100%;
+    }
+
+    .photo img {
+        height: 100%;
+        width: 100%;
+    }
+
+    .txt1 {
+        margin: auto;
+        text-align: center;
+        font-size: 17px;
+    }
+
+    .content {
+        width: 80%;
+        height: 100px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        top: -33px;
+    }
+
+    .photos {
+        width: 155px;
+        height: 30px;
+        background-color: #E74C3C;
+        color: white;
+        position: relative;
+        top: -30px;
+        padding-left: 10px;
+        font-size: 20px;
+    }
+
+    .txt4 {
+        font-size: 27px;
+        position: relative;
+        top: 33px;
+        color: #777DD1;
+        font-weight: bold;
+
+    }
+
+    .txt5 {
+        position: relative;
+        top: 18px;
+        color: #777DD1;
+        font-size: 23px;
+    }
+
+    .txt2 {
+        position: relative;
+        top: 10px;
+    }
+
+    .cardcontainer:hover>.photo {
+        height: 400px;
+        animation: move1 0.5s ease both;
+    }
+
+    @keyframes move1 {
+        0% {
+            height: 200px
+        }
+
+        100% {
+            height: 100px
+        }
+    }
+
+    .cardcontainer:hover>.content {
+        height: 200px;
+    }
+
+    .footer {
+        width: 80%;
+        height: 100px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: white;
+        position: relative;
+        top: -15px;
+    }
+
+    .btn {
+        position: relative;
+        top: 20px;
+    }
+
+    #heart {
+        cursor: pointer;
+    }
+
+    .like {
+        float: right;
+        font-size: 22px;
+        position: relative;
+        top: 20px;
+        color: #333333;
+    }
+
+    .fa-gratipay {
+        margin-right: 10px;
+        transition: 0.5s;
+    }
+
+    .fa-gratipay:hover {
+        color: #E74C3C;
+    }
+
+    .txt3 {
+        color: gray;
+        position: relative;
+        top: 18px;
+        font-size: 14px;
+    }
+
+    .comments {
+        float: right;
+        cursor: pointer;
+    }
+
+    .fa-clock,
+    .fa-comments {
+        margin-right: 7px;
+    }
+</style>
+<br>
+<div class="container ">
+    <div class="row">
+        {% for flan in flanes %}
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            <br>
+            <div class="cardcontainer">
+                <div class="photo">
+                    <img src="{{flan.image}}">
+                    {% if flan.alto_calorias %}
+                        <div class="photos">Alto en calorias</div>
+                    {% endif %}
+                </div>
+
+                <div class="content">
+                    <a href=" {% url 'flan_detail' flan.id %}"><p class="txt4">{{flan.name}}</p></a>
+                    <p class="txt5"> <br></p>
+                    <p class="txt2">{{flan.description}}</p>
+                    <p>
+                        <a class="btn" href="{% url 'flan_detail' flan.id %}">
+                            <i class="fas fa-arrow-right"></i> Ver más
+                        </a>
+                    </p>
+                </div>
+                <div class="footer">
+<div class="btn-group">
+    <a href="{% url 'add_to_favorites' flan.id %}" class="btn btn-outline-primary">Agregar a Favoritos</a>
+    <a href="{% url 'remove_from_favorites' flan.id %}" class="btn btn-outline-danger">Eliminar de Favoritos</a>
+</div>
+
+                        </i></span></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
+</div>
+
+<script>
+    // Suponiendo que usas jQuery y tus íconos tienen una clase .favorito-icono
+$(document).ready(function(){
+    $('.favorito-icono').click(function() {
+        var $icon = $(this);
+        var flanId = $icon.data('flan-id');
+        $.post('/toggle_favorite', {flan_id: flanId}, function(response) {
+            if (response.is_favorited) {
+                $icon.addClass('is-favorited');
+            } else {
+                $icon.removeClass('is-favorited');
+            }
+        });
+    });
+});
+
+    </script>
+    
+
+
 {% endblock 'contect' %}

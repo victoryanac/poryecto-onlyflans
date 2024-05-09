@@ -1,8 +1,9 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light"> 
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="margin-right: auto;">
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+        style="margin-right: auto;">
         <span class="navbar-toggler-icon"></span>
-    </button>
+    </button>   
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav">
@@ -15,11 +16,30 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'about' %}">Acerca</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'contact_form' %}">Contacto</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'favorites' %}">Favoritos</a>
+            </li>
             <li class="nav-item dropdown">
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">Action</a>
                 </div>
             </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <p class="d-inline">Bienvenido {{ user.username }}</p>
+                <a class="nav-link d-inline" href="{% url 'logout' %}">Cerrar sesión</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
+            </li>
+            {% endif %}
         </ul>
     </div>
 </nav>

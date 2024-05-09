@@ -1,0 +1,42 @@
+{% extends 'includes/base.html' %}
+{% block 'contect' %} 
+<br><br>
+<div class="d-flex justify-content-center">
+    <form method="post" class="form w-50" id="contactForm">
+        {% csrf_token %}
+        <div class="form-group text-center">
+            <label for="id_name">Nombre</label>
+            <input type="text" id="id_name" name="customer_name" class="form-control">
+            <label for="id_email">Email</label>
+            <input type="email" id="id_email" name="customer_email" class="form-control">
+            <label for="id_message">Mensaje</label>
+            <textarea id="id_message" name="message" class="form-control"></textarea>
+        </div>
+        <div id="error-message" class="text-danger text-center"></div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+    </form>
+</div>
+<script>
+$(document).ready(function () {
+    $('#contactForm').on('submit', function(e) {
+        var email = $('#id_email').val();
+        var name = $('#id_name').val();
+        var emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+        var nameRegex = /^[a-zA-Z ]{2,30}$/;
+        $('#error-message').text('');
+        if (!emailRegex.test(email)) {
+            e.preventDefault();
+            $('#error-message').text('Por favor, ingrese un correo electrónico válido.');
+            return;
+        }
+        if (!nameRegex.test(name)) {
+            e.preventDefault();
+            $('#error-message').text('Por favor, ingrese un nombre válido.');
+            return;
+        }
+    });
+});
+</script>
+{% endblock 'contect' %}
